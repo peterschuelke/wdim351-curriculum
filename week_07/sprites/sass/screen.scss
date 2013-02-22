@@ -1,0 +1,69 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@import "compass/reset";
+@import "compass";
+
+// Sprites below!
+
+// defaults to including the sprite dimensions
+$oursprites-sprite-dimensions: true;
+
+// this triggers our sprite mixin. "oursprites" is the name of the folder.
+// sprites courtesy of http://simpleicons.org/
+@import "oursprites/*.png";
+
+*{
+  @include box-sizing("border-box");
+}
+body{
+  padding: 20px;
+}
+
+// style the list
+.sprite-demo{
+  @include inline-block-list(5px);
+  margin-bottom: 50px;
+}
+
+.icon{
+  a{
+    @include hide-text();
+    display: block;
+  }
+}
+
+// facebook
+a[href*="facebook"]{
+  @include oursprites-sprite("facebook-64");
+  background-color: #3B5998;
+}
+// drupal
+a[href*="drupal"]{
+  @include oursprites-sprite("drupal-64");
+  background-color: #0077C0;
+}
+// github
+a[href*="github"]{
+  @include oursprites-sprite("github-64");
+  background-color: #4183C4;
+}
+// reddit
+a[href*="reddit"]{
+  @include oursprites-sprite("reddit-64");
+  background-color: #FF4500;
+}
+// grooveshark
+a[href*="grooveshark"]{
+  @include oursprites-sprite("grooveshark-64");
+  background-color: #000000;
+}
+
+// get the dimensions of a sprite. Notice NO "@include"
+//http://compass-style.org/help/tutorials/spriting/
+.sprite-dimensions{
+  width: oursprites-sprite-width("facebook-64");
+  height: oursprites-sprite-height("facebook-64");
+  background: grey;
+}
