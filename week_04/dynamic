@@ -1,0 +1,29 @@
+<VirtualHost 127.0.0.1:80>
+  ServerAdmin admin@peter.com
+  ServerName dev.peter.com
+  ServerAlias *.dev.peter.com
+
+  <Directory />
+    Options FollowSymLinks
+    AllowOverride None
+  </Directory>
+  <Directory /home/peter/sites/>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    allow from all
+  </Directory>
+
+  #Apache Environment variables are used in recent installs, set
+  #log locations specifically if not available in your distribution.
+  ErrorLog ${APACHE_LOG_DIR}/dev-error.log
+
+  # Possible values include: debug, info, notice, warn, error, crit,
+  # alert, emerg.
+  LogLevel warn
+  CustomLog ${APACHE_LOG_DIR}/dev-access.log combined
+
+  #URL structure project.user.dev.example.com
+  UseCanonicalName Off
+  VirtualDocumentRoot /home/peter/sites/%-4/
+</VirtualHost>
